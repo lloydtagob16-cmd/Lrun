@@ -45,29 +45,8 @@
     header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
     }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 19px;
-      font-weight: 800;
-      letter-spacing: -.04em;
-    }
-
-    .brand-mark {
-      width: 31px;
-      height: 31px;
-      display: grid;
-      place-items: center;
-      border-radius: 10px;
-      color: var(--bg);
-      background: var(--lime);
-    }
-
-    .brand-mark svg { width: 19px; height: 19px; }
 
     .activity-select {
       display: flex;
@@ -448,6 +427,46 @@
       .stat { min-height: 76px; padding: 12px 14px; }
       .heading-card { min-height: 58px; }
     }
+
+    @media (min-width: 900px) {
+      .app {
+        width: min(100%, 1320px);
+        padding: 32px clamp(28px, 4vw, 56px) 48px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(340px, .85fr);
+        grid-template-areas:
+          "header header"
+          "map stats"
+          "map heading"
+          "map controls"
+          "map notice"
+          "history history";
+        align-content: start;
+        align-items: stretch;
+        gap: 18px 26px;
+      }
+
+      header { grid-area: header; padding-bottom: 4px; }
+      .map-wrap {
+        grid-area: map;
+        height: min(68vh, 620px);
+        min-height: 440px;
+        border-radius: 24px;
+      }
+      .stats { grid-area: stats; gap: 12px; }
+      .stat { min-height: 94px; padding: 17px 18px; }
+      .heading-card { grid-area: heading; }
+      .controls { grid-area: controls; margin-top: 0; }
+      .notice { grid-area: notice; margin: 0; text-align: left; }
+      .history { grid-area: history; margin-top: 8px; padding: 20px; }
+      .history-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    }
+
+    @media (min-width: 1400px) {
+      .app { gap: 22px 32px; }
+      .stat-value { font-size: 34px; }
+      .history-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
   </style>
 </head>
 <body>
@@ -497,12 +516,6 @@
   </script>
   <main class="app">
     <header>
-      <div class="brand">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M7 17.5 10 7l4 4 3-4" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="18" r="2" fill="currentColor"/><circle cx="17" cy="7" r="2" fill="currentColor"/></svg>
-        </span>
-        LRUN
-      </div>
       <button class="activity-select" id="activityButton" type="button" aria-label="Activity type: Run. Tap to change">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m13 5 2 3 3 1-2 2-1 4 3 4M11 9l-3 3-3 1m5-4 3 2-2 4-4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="4" r="2" fill="currentColor"/></svg>
         RUN
