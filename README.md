@@ -2,6 +2,10 @@
 
 LRUN is a lightweight, mobile-friendly jogging and walking tracker. It is a static web app made with HTML, CSS, and JavaScript; there is no server or build step included.
 
+## Recomended 
+
+Use mobile phone
+
 ## Features
 
 - Live map and GPS location
