@@ -19,7 +19,7 @@ LRUN is a lightweight, mobile-friendly jogging and walking tracker. It is a stat
 
 Keep the logo in the same folder as `index.html`; the page loads it using a relative path.
 
-## Run it locally
+## Run it locally (optional)
 
 GPS access generally requires a secure context. `localhost` is treated as secure by modern browsers, but opening `index.html` directly as a `file://` URL may prevent location access.
 
@@ -49,9 +49,15 @@ GPS distance is approximate. LRUN ignores location fixes with accuracy worse tha
 
 Completed activities, including route points, are saved in the current browser's local storage on that device. They are not synced to an account or backed up to a LRUN server. Clearing the browser's site data can delete them. The app itself does not upload saved activities, but it does request map tiles from OpenStreetMap and loads Leaflet from a CDN to display the map.
 
-## Put it online
+## Deploy and open with GitHub Pages
 
-This is a static site: upload `index.html` and `lrun-logo.png` together to a static web host. Use an **HTTPS** address for phone GPS permissions, then open the site on your phone and allow location access. An internet connection is needed for the map library and map tiles.
+1. Push `index.html` and `lrun-logo.png` to the root of your GitHub repository. Keep both files together so the logo loads correctly.
+2. In the repository on GitHub, open **Settings** > **Pages**.
+3. Under **Build and deployment**, choose **Deploy from a branch**.
+4. Choose the branch you use (usually `main`) and the `/(root)` folder, then select **Save**.
+5. Wait for the Pages deployment to finish. Open the published URL shown in **Settings** > **Pages**; a project site usually looks like `https://<username>.github.io/<repository>/`.
+
+Open that HTTPS URL on your phone and allow location access when prompted. GitHub Pages supplies HTTPS, which is required for phone GPS permissions. Keep an internet connection available for the map library and map tiles.
 
 There is no backend, user account, cloud sync, or automatic Strava integration.
 
