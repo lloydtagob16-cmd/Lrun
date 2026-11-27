@@ -1,73 +1,136 @@
 # LRUN
 
-LRUN is a lightweight, mobile-friendly jogging and walking tracker. It is a static web app made with HTML, CSS, and JavaScript; there is no server or build step included.
+LRUN is a lightweight, mobile-friendly jogging and walking tracker that runs directly in the browser. It provides live GPS location, route visualization, elapsed time, distance, pace, and locally saved activity history.
 
-## Recomended 
+The application is entirely client-side: it has no backend, account system, database, build process, or automatic cloud synchronization. Completed activities are stored in the browser's local storage on the current device.
 
-Use mobile phone
+## Main Purpose
 
-## Features
+LRUN helps users start, monitor, pause, resume, and finish walking or running activities. It calculates approximate movement distance, displays the route on an interactive map, and generates a downloadable PNG summary of each completed activity.
 
-- Live map and GPS location
-- Run and Walk activity modes
-- Distance, elapsed time, pace, GPS accuracy, and direction
-- Pause, resume, and finish controls
-- Locally saved activity history with rename and date/time details
-- Activity summary image with the route, available to view and download
-- Intro screen and responsive phone, tablet, and desktop layouts
+## Key Features
 
-## Project files
+- Run and walk activity modes
+- Live GPS location and interactive route map
+- Distance, elapsed time, pace, and GPS accuracy indicators
+- Device direction support using GPS movement or compass data
+- Start, pause, resume, and finish controls
+- Confirmation and custom naming prompts for saved activities
+- Saved activity history with rename and view actions
+- Route summary cards displayed in-browser and downloadable as PNG images
+- Responsive intro and activity screens for mobile, tablet, and desktop devices
+- Browser-local data storage with no account or server required
 
-- `index.html` — app layout, styles, and tracking logic
-- `lrun-logo.png` — LRUN logo used by the intro screen
+## Technologies Used
 
-Keep the logo in the same folder as `index.html`; the page loads it using a relative path.
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- Web Geolocation API
+- Device Orientation API
+- HTML Canvas API
+- Browser Local Storage
+- [Leaflet](https://leafletjs.com/) 1.9.4
+- [OpenStreetMap](https://www.openstreetmap.org/) map tiles
 
-## Run it locally (optional)
+No JavaScript package manager or build tool is currently required.
 
-GPS access generally requires a secure context. `localhost` is treated as secure by modern browsers, but opening `index.html` directly as a `file://` URL may prevent location access.
+## Project Structure
 
-1. Open the project folder in VS Code.
-2. Start a local web server, for example with the **Live Server** extension and its **Go Live** command.
-3. Open the local site in your browser and allow location access.
+```text
+LRUN/
+├── index.html       # Application markup, styles, and tracking logic
+├── lrun-logo.png    # LRUN logo displayed by the intro screen
+├── README.md        # Project documentation
+└── .gitignore       # Files and folders excluded from Git
+```
 
-Alternatively, if Python is installed, open a terminal in the project folder and run:
+The `lrun-logo.png` file must remain in the project root beside `index.html` because the page uses a relative image path.
+
+## Prerequisites
+
+- A modern browser with location support
+- An internet connection for Leaflet assets and OpenStreetMap map tiles
+- A local web server for development and testing
+
+Browser location access is most reliable over HTTPS or localhost. Opening `index.html` directly with a `file://` URL may prevent GPS access or restrict browser storage.
+
+## Installation
+
+1. Clone the repository:
+
+   ```powershell
+   git clone https://github.com/lloydtagob16-cmd/Lrun.git
+   cd Lrun
+   ```
+
+2. Keep `index.html` and `lrun-logo.png` together in the project root.
+
+No dependency installation or build step is required.
+
+## Run Locally
+
+### Using Python
+
+If Python is installed, run:
 
 ```powershell
 python -m http.server 8000
 ```
 
-Then open `http://localhost:8000`.
+Open `http://localhost:8000` in a browser.
 
-## Use the tracker
+### Using VS Code
 
-1. Open LRUN and allow location access when prompted. The map will try to show your current location.
-2. Tap the activity selector to choose **Run** or **Walk**.
-3. Tap **Start activity** and keep your phone with you while moving.
-4. Use **Pause** and **Resume** as needed; tap **Finish** to save the activity.
-5. When you finish, enter a name for the activity. In **Saved activities**, use **Rename** to change it later or **View** to open its summary image. Use **Save image** to download the summary.
+1. Open the project folder in VS Code.
+2. Install the Live Server extension, if it is not already available.
+3. Select **Go Live** or open `index.html` with Live Server.
+4. Allow location access when prompted.
 
-GPS distance is approximate. LRUN ignores location fixes with accuracy worse than 50 m and filters very small movements and large jumps when calculating distance. Direction depends on the phone's compass or GPS movement data; compass permission may be requested on some phones.
+## How to Use
 
-## Save data and privacy
+1. Open LRUN and allow location access.
+2. Select **Run** or **Walk**.
+3. Select **Start activity** and keep the device with you while moving.
+4. Use **Pause** and **Resume** when needed.
+5. Select **Finish** and confirm that the activity should be saved.
+6. Enter a name for the activity or use the generated default name.
+7. Open **Saved activities** to view, rename, or download a summary image.
 
-Completed activities, including route points, are saved in the current browser's local storage on that device. They are not synced to an account or backed up to a LRUN server. Clearing the browser's site data can delete them. The app itself does not upload saved activities, but it does request map tiles from OpenStreetMap and loads Leaflet from a CDN to display the map.
+GPS readings vary by device and environment. LRUN ignores location fixes with accuracy worse than 50 meters and filters very small movements and likely large jumps before calculating route distance.
 
-## Deploy and open with GitHub Pages
+## Saved Data and Privacy
 
-1. Push `index.html` and `lrun-logo.png` to the root of your GitHub repository. Keep both files together so the logo loads correctly.
-2. In the repository on GitHub, open **Settings** > **Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**.
-4. Choose the branch you use (usually `main`) and the `/(root)` folder, then select **Save**.
-5. Wait for the Pages deployment to finish. Open the published URL shown in **Settings** > **Pages**; a project site usually looks like `https://<username>.github.io/<repository>/`.
+Completed activities, including route coordinates and summary details, are stored in the browser's local storage. Data is device- and browser-specific and is not uploaded to an LRUN server or synchronized between devices.
 
-Open that HTTPS URL on your phone and allow location access when prompted. GitHub Pages supplies HTTPS, which is required for phone GPS permissions. Keep an internet connection available for the map library and map tiles.
+The application requests map tiles from OpenStreetMap and loads Leaflet from unpkg. The app itself does not send saved activity data to those services.
 
-There is no backend, user account, cloud sync, or automatic Strava integration.
+Clearing browser site data will remove saved activities. The app may not retain data when private browsing or strict browser storage settings are used.
 
-## Customize the app
+## Deployment
 
-- Edit the `<style>` section in `index.html` to change layout, colors, or responsive behavior.
+The project can be hosted as a static site, including with GitHub Pages.
+
+1. Push `index.html`, `lrun-logo.png`, `README.md`, and `.gitignore` to the repository.
+2. On GitHub, open **Settings** > **Pages**.
+3. Under **Build and deployment**, select **Deploy from a branch**.
+4. Choose the desired branch and the repository root folder.
+5. Save the settings and wait for the deployment to finish.
+6. Open the HTTPS URL shown in the Pages settings.
+
+HTTPS is recommended for GPS permissions on phones. GPS tracking also requires an internet connection for the map library and map tiles.
+
+## Customization
+
+- Edit the `<style>` section in `index.html` to change colors, spacing, or responsive layout.
 - Edit the page markup to change labels and controls.
-- Edit the JavaScript near the end of `index.html` to change tracking, distance, storage, or summary-card behavior.
-- Replace `lrun-logo.png` with another image using the same filename, or update the relative image path in the page.
+- Edit the JavaScript in `index.html` to adjust tracking, filtering, storage, or summary behavior.
+- Replace `lrun-logo.png` with another logo using the same file name, or update its relative image path.
+
+## Limitations
+
+- Activity data is available only in the browser on which it was saved.
+- There is no account, backend, cloud backup, or cross-device synchronization.
+- Distance and route accuracy depend on the device GPS and its surroundings.
+- Compass permission and orientation behavior vary by browser and operating system.
+- Map tiles require internet access and are supplied by OpenStreetMap.

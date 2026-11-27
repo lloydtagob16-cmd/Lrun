@@ -1051,7 +1051,11 @@
         startWatch();
       });
 
-      $("finishButton").addEventListener("click", finishActivity);
+      $("finishButton").addEventListener("click", () => {
+        if (window.confirm("Finish and save this activity?")) {
+          finishActivity();
+        }
+      });
       $("closeShareButton").addEventListener("click", () => $("shareDialog").close());
       $("downloadCardButton").addEventListener("click", () => {
         if (!currentCardDataUrl) return;
