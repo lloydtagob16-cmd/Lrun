@@ -45,7 +45,7 @@ Then open `http://localhost:8000`.
 2. Tap the activity selector to choose **Run** or **Walk**.
 3. Tap **Start activity** and keep your phone with you while moving.
 4. Use **Pause** and **Resume** as needed; tap **Finish** to save the activity.
-5. In **Saved activities**, use **Rename** to change its name or **View** to open its summary image. Use **Save image** to download the summary.
+5. When you finish, enter a name for the activity. In **Saved activities**, use **Rename** to change it later or **View** to open its summary image. Use **Save image** to download the summary.
 
 GPS distance is approximate. LRUN ignores location fixes with accuracy worse than 50 m and filters very small movements and large jumps when calculating distance. Direction depends on the phone's compass or GPS movement data; compass permission may be requested on some phones.
 

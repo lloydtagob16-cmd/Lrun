@@ -990,9 +990,12 @@
         $("statusDot").classList.remove("live");
         const finishedAt = Date.now();
         const startedAtDate = activityStartedAt || finishedAt - elapsedBeforePause * 1000;
+        const defaultName = `${activityType === "RUN" ? "Run" : "Walk"} · ${new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }).format(new Date(startedAtDate))}`;
+        const enteredName = window.prompt("Name this activity", defaultName);
+        const activityName = enteredName === null ? defaultName : enteredName.trim() || defaultName;
         const activity = {
           id: `${finishedAt}-${Math.random().toString(36).slice(2, 8)}`,
-          name: `${activityType === "RUN" ? "Run" : "Walk"} · ${new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }).format(new Date(startedAtDate))}`,
+          name: activityName,
           type: activityType,
           startedAt: new Date(startedAtDate).toISOString(),
           finishedAt: new Date(finishedAt).toISOString(),
