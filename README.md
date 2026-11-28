@@ -1,12 +1,30 @@
 # LRUN
 
-LRUN is a lightweight, mobile-friendly jogging and walking tracker that runs directly in the browser. It provides live GPS location, route visualization, elapsed time, distance, pace, and locally saved activity history.
+LRUN is a one-page, mobile-friendly community walking and running tracker. Its core feature is recording an outing with GPS, showing the route and activity stats, then saving the activity in the browser.
 
 The application is entirely client-side: it has no backend, account system, database, build process, or automatic cloud synchronization. Completed activities are stored in the browser's local storage on the current device.
 
-## Main Purpose
+## Community Problem and FR-01
 
-LRUN helps users start, monitor, pause, resume, and finish walking or running activities. It calculates approximate movement distance, displays the route on an interactive map, and generates a downloadable PNG summary of each completed activity.
+**Draft problem statement:** In a local community, people who walk or run for exercise can struggle to keep a consistent record of their route, distance, and time because notes are easy to forget and they may not want to create an account for a basic activity log. A simple web page that records an outing with the phone's GPS and saves it on the device would help.
+
+**FR-01:** A community member can record a walk or run with GPS, view its route, distance, and duration, and save the activity on the device so it is still available after a page refresh.
+
+The community wording is a draft. Replace it with your actual barangay, school, or organization and validate the need with a community member or classmate before submitting.
+
+### Acceptance criteria
+
+1. With location permission and a usable GPS fix, starting an activity shows the route, distance, and elapsed time.
+2. GPS fixes with accuracy worse than 50 meters do not add a route point or distance and show a weak-signal message.
+3. Pausing stops tracking and the timer; resuming continues the same activity.
+4. Finishing an activity saves its summary and route locally, and the saved activity remains available after refreshing the page.
+5. Denied or unavailable location access shows an explanatory message instead of recording a fabricated route.
+
+See [PROJECT_BRIEF.md](PROJECT_BRIEF.md) for the pitch, users, and architecture, and [TEST_PLAN.md](TEST_PLAN.md) for a manual test table.
+
+## Main Feature
+
+LRUN supports the FR-01 workflow: start, pause, resume, and finish one walk or run; view its GPS route and stats; and keep completed activities in local storage. Map, direction, and activity-summary controls support that workflow.
 
 ## Key Features
 
@@ -42,6 +60,9 @@ LRUN/
 ├── index.html       # Application markup, styles, and tracking logic
 ├── lrun-logo.png    # LRUN logo displayed by the intro screen
 ├── README.md        # Project documentation
+├── PROJECT_BRIEF.md # One-page project brief
+├── PROMPT_LOG.md    # AI-use log
+├── TEST_PLAN.md     # Manual acceptance test table
 └── .gitignore       # Files and folders excluded from Git
 ```
 

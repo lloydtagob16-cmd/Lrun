@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#101812">
-  <title>LRUN — Live activity</title>
+  <title>LRUN — Community Walk/Run Tracker</title>
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="preconnect" href="https://tile.openstreetmap.org">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -46,6 +46,19 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
+    }
+
+    .app-context { margin-top: -10px; }
+    .app-context h1 {
+      margin: 0;
+      font-size: clamp(20px, 5vw, 25px);
+      letter-spacing: -.04em;
+    }
+    .app-context p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
     }
 
     .activity-select {
@@ -521,6 +534,10 @@
         RUN
       </button>
     </header>
+    <section class="app-context" aria-labelledby="appTitle">
+      <h1 id="appTitle">Community walk &amp; run tracker</h1>
+      <p>Record your route, distance, and time with GPS. Your activities stay on this device.</p>
+    </section>
 
     <section class="map-wrap" aria-label="Live route map">
       <div id="map"></div>
