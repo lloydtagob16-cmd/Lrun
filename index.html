@@ -684,11 +684,16 @@
         const { latitude, longitude, accuracy, heading } = position.coords;
         const current = { lat: latitude, lng: longitude };
         showCurrentLocation(position);
+        if (state === "running") {
+          $("startButton").disabled = false;
+          $("startButton").textContent = "Pause";
+        }
 
         if (Number.isFinite(heading) && heading >= 0) updateHeading(heading, "gps");
         else if (!headingSource) $("headingHint").textContent = "Move outdoors for direction";
 
         if (accuracy > 50) {
+          $("statusText").textContent = "Weak GPS signal";
           setNotice(`GPS signal is weak (${Math.round(accuracy)} m accuracy). Move somewhere with a clearer sky view.`, false);
           return;
         }
@@ -709,7 +714,10 @@
         lastPoint = current;
         route.addLatLng(current);
         updateStats();
-        if (state === "running") setNotice("Tracking your activity. Keep your phone with you.", false);
+        if (state === "running") {
+          $("statusText").textContent = "Tracking activity";
+          setNotice("Tracking your activity. Keep your phone with you.", false);
+        }
       };
 
       const locationError = (error) => {
